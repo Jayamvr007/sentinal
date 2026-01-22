@@ -1,11 +1,32 @@
 'use client';
 
-import { usePriceStream } from './hooks/usePriceStream';
+import { useCallback } from 'react';
+import { usePriceStream, TriggeredAlert } from './hooks/usePriceStream';
+import { useAlerts } from './hooks/useAlerts';
 import { ConnectionStatus } from './components/ConnectionStatus';
 import { PriceCard } from './components/PriceCard';
+import { AlertForm } from './components/AlertForm';
+import { AlertList } from './components/AlertList';
+import { ToastContainer, showToast } from './components/Toast';
+
+// Available symbols for alerts
+const SYMBOLS = ['AAPL', 'GOOGL', 'TSLA', 'MSFT', 'AMZN', 'NVDA', 'META', 'JPM', 'V', 'SPY'];
 
 export default function Home() {
-  const { prices, connectionStatus, lastUpdate, reconnect } = usePriceStream();
+  // Handle alert triggers with toast notification
+  const handleAlertTriggered = useCallback((alert: TriggeredAlert) => {
+    showToast({
+      type: 'alert',
+      title: `🎯 Alert Triggered: ${alert.symbol}`,
+      message: `Price went ${alert.condition} $${alert.target_price.toFixed(2)}`,
+      duration: 8000,
+    });
+  }, []);
+
+  const { prices, connectionStatus, lastUpdate, reconnect } = usePriceStream({
+    onAlertTriggered: handleAlertTriggered,
+  });
+  const { alerts, loading: alertsLoading, createAlert, deleteAlert, refetchAlerts } = useAlerts();
 
   const priceArray = Array.from(prices.values());
 
@@ -19,6 +40,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-mesh">
+      {/* Toast Notifications */}
+      <ToastContainer />
+
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 glass">
         <div className="w-full px-6 lg:px-12">
@@ -98,12 +122,30 @@ export default function Home() {
           )}
         </div>
 
+        {/* Alerts Section */}
+        <div className="mb-12">
+          <h3 className="text-xl font-bold text-white mb-4">📢 Price Alerts</h3>
+          <AlertForm
+            symbols={SYMBOLS}
+            onSubmit={async (alert) => { await createAlert(alert); }}
+            disabled={connectionStatus !== 'connected'}
+          />
+          <AlertList
+            alerts={alerts}
+            onDelete={async (id) => { await deleteAlert(id); }}
+            loading={alertsLoading}
+          />
+        </div>
+
         {/* Price Grid - All cards in continuous flow */}
         {priceArray.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {priceArray.map((price) => (
-              <PriceCard key={price.symbol} price={price} />
-            ))}
+          <div>
+            <h3 className="text-xl font-bold text-white mb-4">📊 Live Prices</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {priceArray.map((price) => (
+                <PriceCard key={price.symbol} price={price} />
+              ))}
+            </div>
           </div>
         )}
       </main>

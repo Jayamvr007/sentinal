@@ -1,6 +1,11 @@
 import Foundation
 import Observation
 
+// MARK: - Notification Names
+extension Notification.Name {
+    static let alertTriggered = Notification.Name("alertTriggered")
+}
+
 /// Connection state for WebSocket
 enum ConnectionState: Equatable, Sendable {
     case connecting
@@ -49,7 +54,7 @@ final class WebSocketManager {
     
     // MARK: - Initialization
     
-    init(url: URL = URL(string: "ws://127.0.0.1:8000/price/stream")!) {
+    init(url: URL = URL(string: "ws://192.168.29.252:8000/price/stream")!) {
         self.url = url
         self.urlSession = URLSession(configuration: .default)
     }
@@ -146,6 +151,14 @@ final class WebSocketManager {
             case "heartbeat":
                 // Keep-alive, no action needed
                 break
+            case "alert_triggered":
+                // Post notification for alert triggered
+                print("[WS] Alert triggered: \(message.data)")
+                NotificationCenter.default.post(
+                    name: .alertTriggered,
+                    object: nil,
+                    userInfo: ["data": message.data]
+                )
             default:
                 print("[WS] Unknown message type: \(message.type)")
             }

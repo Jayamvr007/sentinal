@@ -95,3 +95,26 @@ class EmergencyStopResponse(BaseModel):
     message: str
     workers_stopped: int
     timestamp: datetime = Field(default_factory=datetime.utcnow)
+
+
+class AlertCreate(BaseModel):
+    """Request to create a new alert"""
+    symbol: str
+    condition: str = Field(..., pattern="^(above|below)$")
+    target_price: float = Field(..., gt=0)
+
+
+class AlertResponse(BaseModel):
+    """Alert response for API"""
+    id: str
+    symbol: str
+    condition: str
+    target_price: float
+    is_triggered: bool
+    is_active: bool
+    created_at: datetime
+    triggered_at: Optional[datetime] = None
+    
+    class Config:
+        from_attributes = True
+

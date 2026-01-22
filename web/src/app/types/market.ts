@@ -18,7 +18,7 @@ export interface SymbolInfo {
 }
 
 export interface WebSocketMessage {
-  type: 'price_update' | 'initial_data' | 'heartbeat' | 'alert_trigger' | 'error';
+  type: 'price_update' | 'initial_data' | 'heartbeat' | 'alert_trigger' | 'alert_triggered' | 'error';
   data: {
     prices?: PriceData[];
     [key: string]: unknown;

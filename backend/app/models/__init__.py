@@ -4,21 +4,27 @@ from .schemas import (
     AlertConfig,
     AlertCondition,
     AlertTrigger,
+    AlertCreate,
+    AlertResponse,
     SymbolInfo,
     MarketSummary,
     WebSocketMessage,
     EmergencyStopRequest,
     EmergencyStopResponse
 )
+from .alert import Alert
 
 __all__ = [
     "PriceData",
     "AlertConfig", 
     "AlertCondition",
     "AlertTrigger",
+    "AlertCreate",
+    "AlertResponse",
     "SymbolInfo",
     "MarketSummary",
     "WebSocketMessage",
     "EmergencyStopRequest",
-    "EmergencyStopResponse"
+    "EmergencyStopResponse",
+    "Alert"
 ]

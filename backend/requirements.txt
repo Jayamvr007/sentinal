@@ -7,6 +7,9 @@ pydantic-settings>=2.0.0
 python-dotenv>=1.0.0
 redis>=5.0.0
 celery>=5.3.0
+sqlalchemy>=2.0.0
+aiosqlite>=0.20.0
+aioapns>=4.0
 
 # Development
 pytest>=7.4.0

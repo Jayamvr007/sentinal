@@ -6,14 +6,19 @@ A real-time market monitoring system with WebSocket price streaming.
 import asyncio
 from contextlib import asynccontextmanager
 from datetime import datetime
+from typing import List
 
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 from .config import get_settings
-from .models import PriceData, SymbolInfo, MarketSummary, WebSocketMessage
+from .models import PriceData, SymbolInfo, MarketSummary, WebSocketMessage, AlertCreate, AlertResponse
 from .services import market_data_service
+from .services.alert_service import alert_service
+from .services.push_notification import push_service
 from .websocket import connection_manager
+from .database import init_db
 
 
 settings = get_settings()
@@ -29,6 +34,29 @@ async def broadcast_prices_loop():
         async for prices in market_data_service.stream_prices(settings.price_update_interval):
             if connection_manager.connection_count > 0:
                 await connection_manager.broadcast_prices(prices)
+            
+            # Evaluate alerts against current prices
+            price_dict = {p.symbol: p.price for p in prices}
+            triggered_alerts = await alert_service.evaluate_alerts(price_dict)
+            
+            # Broadcast triggered alerts and send push notifications
+            for alert in triggered_alerts:
+                await connection_manager.broadcast(WebSocketMessage(
+                    type="alert_triggered",
+                    data=alert.to_dict(),
+                    timestamp=datetime.utcnow()
+                ).model_dump(mode="json"))
+                print(f"[Alert] TRIGGERED: {alert.symbol} {alert.condition.value} ${alert.target_price}")
+                
+                # Send push notification
+                current_price = price_dict.get(alert.symbol)
+                await push_service.send_alert_notification(
+                    symbol=alert.symbol,
+                    condition=alert.condition.value,
+                    target_price=alert.target_price,
+                    current_price=current_price
+                )
+                
     except asyncio.CancelledError:
         print("[Background] Price broadcast loop cancelled")
         raise
@@ -41,6 +69,14 @@ async def lifespan(app: FastAPI):
     
     # Startup
     print(f"[Startup] {settings.app_name} starting...")
+    
+    # Initialize database
+    await init_db()
+    print("[Startup] Database initialized")
+    
+    # Initialize push notification service
+    await push_service.initialize()
+    
     price_broadcast_task = asyncio.create_task(broadcast_prices_loop())
     
     yield
@@ -98,7 +134,6 @@ async def get_symbol_price(symbol: str):
     """Get current price for a specific symbol"""
     price = market_data_service.get_current_price(symbol.upper())
     if not price:
-        from fastapi import HTTPException
         raise HTTPException(status_code=404, detail=f"Symbol {symbol} not found")
     return price
 
@@ -112,6 +147,84 @@ async def get_market_summary():
         last_updated=datetime.utcnow(),
         market_status="open"
     )
+
+
+# ============================================================================
+# Alert API Endpoints
+# ============================================================================
+
+@app.get("/api/v1/alerts", response_model=List[AlertResponse])
+async def get_alerts():
+    """Get all active alerts"""
+    alerts = await alert_service.get_all_alerts()
+    return [AlertResponse(
+        id=a.id,
+        symbol=a.symbol,
+        condition=a.condition.value,
+        target_price=a.target_price,
+        is_triggered=a.is_triggered,
+        is_active=a.is_active,
+        created_at=a.created_at,
+        triggered_at=a.triggered_at
+    ) for a in alerts]
+
+
+@app.post("/api/v1/alerts", response_model=AlertResponse, status_code=201)
+async def create_alert(alert_data: AlertCreate):
+    """Create a new price alert"""
+    alert = await alert_service.create_alert(
+        symbol=alert_data.symbol.upper(),
+        condition=alert_data.condition,
+        target_price=alert_data.target_price
+    )
+    return AlertResponse(
+        id=alert.id,
+        symbol=alert.symbol,
+        condition=alert.condition.value,
+        target_price=alert.target_price,
+        is_triggered=alert.is_triggered,
+        is_active=alert.is_active,
+        created_at=alert.created_at,
+        triggered_at=alert.triggered_at
+    )
+
+@app.delete("/api/v1/alerts/{alert_id}")
+async def delete_alert(alert_id: str):
+    """Delete an alert by ID"""
+    success = await alert_service.delete_alert(alert_id)
+    if not success:
+        raise HTTPException(status_code=404, detail=f"Alert {alert_id} not found")
+    return {"success": True, "message": "Alert deleted"}
+
+
+# ============================================================================
+# Device Token Endpoints (for Push Notifications)
+# ============================================================================
+
+class DeviceTokenRequest(BaseModel):
+    """Request body for device token registration"""
+    token: str
+
+
+@app.post("/api/v1/devices/register")
+async def register_device(request: DeviceTokenRequest):
+    """Register a device token for push notifications"""
+    push_service.register_device(request.token)
+    return {
+        "success": True,
+        "message": "Device registered for push notifications",
+        "registered_devices": push_service.registered_devices
+    }
+
+
+@app.post("/api/v1/devices/unregister")
+async def unregister_device(request: DeviceTokenRequest):
+    """Unregister a device token"""
+    push_service.unregister_device(request.token)
+    return {
+        "success": True,
+        "message": "Device unregistered"
+    }
 
 
 # ============================================================================

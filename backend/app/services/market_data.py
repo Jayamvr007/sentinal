@@ -143,7 +143,7 @@ class FinnhubMarketDataService:
                         self._current_prices[symbol] = float(price)
                         self._volumes[symbol] += int(volume)
                         self._last_update[symbol] = datetime.now()
-                        print(f"[Finnhub] REAL TRADE: {symbol} @ ${price:.2f}")
+                        # print(f"[Finnhub] REAL TRADE: {symbol} @ ${price:.2f}")
             
             elif data.get("type") == "ping":
                 # Respond to ping to keep connection alive
