@@ -15,7 +15,30 @@ final class AlertService: ObservableObject {
     
     private init() {
         decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
+        // Custom date decoder to handle dates without timezone from backend
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        
+        // Also support dates with timezone
+        let iso8601Formatter = ISO8601DateFormatter()
+        iso8601Formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        
+        decoder.dateDecodingStrategy = .custom { decoder in
+            let container = try decoder.singleValueContainer()
+            let dateString = try container.decode(String.self)
+            
+            // Try the basic format first (from backend)
+            if let date = dateFormatter.date(from: dateString) {
+                return date
+            }
+            // Try ISO8601 with timezone
+            if let date = iso8601Formatter.date(from: dateString) {
+                return date
+            }
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date: \(dateString)")
+        }
         
         encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase

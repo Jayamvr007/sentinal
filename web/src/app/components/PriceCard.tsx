@@ -7,13 +7,13 @@ interface PriceCardProps {
     price: PriceData;
 }
 
-// Sector icons mapping
+// Sector icons mapping for NIFTY 50
 const sectorIcons: Record<string, string> = {
     Technology: '💻',
-    Automotive: '🚗',
+    Finance: '🏦',
     Consumer: '🛒',
-    Commodities: '🪙',
-    Index: '📊',
+    Energy: '⚡',
+    Telecom: '📱',
 };
 
 export function PriceCard({ price }: PriceCardProps) {
@@ -78,7 +78,7 @@ export function PriceCard({ price }: PriceCardProps) {
             {/* Price */}
             <div className="mb-4 relative">
                 <span className="text-3xl font-bold text-white tracking-tight">
-                    ${price.price.toFixed(2)}
+                    ₹{price.price.toFixed(2)}
                 </span>
                 <div className="flex items-center gap-2 mt-1">
                     <span className={`text-sm font-medium ${changeColor}`}>
@@ -96,42 +96,42 @@ export function PriceCard({ price }: PriceCardProps) {
                 </div>
                 <div className="flex items-center gap-1">
                     <span className="text-zinc-600">Prev:</span>
-                    <span className="text-zinc-400">${price.previous_close.toFixed(2)}</span>
+                    <span className="text-zinc-400">₹{price.previous_close.toFixed(2)}</span>
                 </div>
             </div>
         </div>
     );
 }
 
-// Helper functions for display data
+// Helper functions for NIFTY 50 Indian stocks
 function getCompanyName(symbol: string): string {
     const names: Record<string, string> = {
-        AAPL: 'Apple Inc.',
-        GOOGL: 'Alphabet Inc.',
-        TSLA: 'Tesla Inc.',
-        MSFT: 'Microsoft Corp.',
-        AMZN: 'Amazon.com Inc.',
-        NVDA: 'NVIDIA Corp.',
-        META: 'Meta Platforms',
-        SLV: 'iShares Silver Trust',
-        GLD: 'SPDR Gold Shares',
-        SPY: 'S&P 500 ETF',
+        RELIANCE: 'Reliance Industries',
+        TCS: 'Tata Consultancy Services',
+        HDFCBANK: 'HDFC Bank Ltd.',
+        INFY: 'Infosys Ltd.',
+        ICICIBANK: 'ICICI Bank Ltd.',
+        HINDUNILVR: 'Hindustan Unilever',
+        ITC: 'ITC Ltd.',
+        SBIN: 'State Bank of India',
+        BHARTIARTL: 'Bharti Airtel Ltd.',
+        KOTAKBANK: 'Kotak Mahindra Bank',
     };
     return names[symbol] || symbol;
 }
 
 function getSector(symbol: string): string {
     const sectors: Record<string, string> = {
-        AAPL: 'Technology',
-        GOOGL: 'Technology',
-        TSLA: 'Automotive',
-        MSFT: 'Technology',
-        AMZN: 'Consumer',
-        NVDA: 'Technology',
-        META: 'Technology',
-        SLV: 'Commodities',
-        GLD: 'Commodities',
-        SPY: 'Index',
+        RELIANCE: 'Energy',
+        TCS: 'Technology',
+        HDFCBANK: 'Finance',
+        INFY: 'Technology',
+        ICICIBANK: 'Finance',
+        HINDUNILVR: 'Consumer',
+        ITC: 'Consumer',
+        SBIN: 'Finance',
+        BHARTIARTL: 'Telecom',
+        KOTAKBANK: 'Finance',
     };
     return sectors[symbol] || 'Other';
 }

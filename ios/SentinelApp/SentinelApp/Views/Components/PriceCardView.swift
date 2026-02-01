@@ -89,11 +89,11 @@ struct PriceCardView: View {
         .padding(16)
         .background {
             RoundedRectangle(cornerRadius: 16)
-                .fill(.ultraThinMaterial)
-                .overlay {
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(flashBorderColor, lineWidth: flash != nil ? 2 : 0)
-                }
+            .fill(.ultraThinMaterial)
+            .overlay {
+                RoundedRectangle(cornerRadius: 16)
+                .stroke(flashBorderColor, lineWidth: flash != nil ? 2 : 0)
+            }
         }
         .onChange(of: price.price) { oldValue, newValue in
             if oldValue != newValue && previousPrice != 0 {
@@ -113,6 +113,31 @@ struct PriceCardView: View {
         .onAppear {
             previousPrice = price.price
         }
+        // MARK: - Live Activity Context Menu (Disabled)
+        // Uncomment when Widget Extension is set up
+        /*
+        .contextMenu {
+            Button {
+                let manager = LiveActivityManager.shared
+                if manager.activity?.attributes.symbol == price.symbol {
+                    Task { await manager.end() }
+                } else {
+                    manager.start(
+                        symbol: price.symbol,
+                        price: price.price,
+                        change: price.change,
+                        changePercent: price.changePercent
+                    )
+                }
+            } label: {
+                if LiveActivityManager.shared.activity?.attributes.symbol == price.symbol {
+                    Label("Stop Tracking", systemImage: "stop.circle")
+                } else {
+                    Label("Track Activity", systemImage: "clock.arrow.circlepath")
+                }
+            }
+        }
+        */
     }
     
     private var flashBorderColor: Color {

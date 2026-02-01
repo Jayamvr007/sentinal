@@ -118,3 +118,54 @@ class AlertResponse(BaseModel):
     class Config:
         from_attributes = True
 
+
+# ============== AI Prediction Schemas ==============
+
+class PredictionPoint(BaseModel):
+    """Single prediction point"""
+    date: str
+    predicted_price: float
+    change_percent: float
+    confidence: float
+
+
+class PredictionResponse(BaseModel):
+    """AI prediction response"""
+    symbol: str
+    current_price: float
+    previous_close: float
+    change_today: float
+    change_percent_today: float
+    predictions: List[PredictionPoint]
+    model_type: str = "LSTM"
+    lookback_days: int = 60
+    last_updated: str
+    disclaimer: str = "AI predictions are for informational purposes only. Not financial advice."
+
+
+class TrainingResponse(BaseModel):
+    """Model training response"""
+    symbol: str
+    status: str
+    epochs_trained: Optional[int] = None
+    final_loss: Optional[float] = None
+    mae: Optional[float] = None
+    model_path: Optional[str] = None
+    trained_at: Optional[str] = None
+    error: Optional[str] = None
+
+
+class BatchTrainingResponse(BaseModel):
+    """Batch training response"""
+    started_at: str
+    completed_at: str
+    symbols_requested: int
+    successful: int
+    failed: int
+    results: List[TrainingResponse]
+
+
+class SymbolListResponse(BaseModel):
+    """Available symbols response"""
+    total: int
+    symbols: List[str]

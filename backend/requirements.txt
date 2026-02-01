@@ -11,6 +11,15 @@ sqlalchemy>=2.0.0
 aiosqlite>=0.20.0
 aioapns>=4.0
 
+# ML/AI Stock Prediction
+yfinance>=0.2.36
+tensorflow>=2.15.0
+scikit-learn>=1.4.0
+pandas>=2.1.0
+numpy>=1.26.0
+ta>=0.11.0
+
 # Development
 pytest>=7.4.0
 httpx>=0.26.0
+

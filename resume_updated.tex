@@ -1,0 +1,257 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,9pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=DarkBlue, filecolor=magenta, urlcolor=NavyBlue}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+\newcommand{\linkicon}[1]{%
+  \href{#1}{\raisebox{-0.15\height}{\faLink}}%
+}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge \scshape Jayam Verma} \\ \vspace{1pt}
+    Software Development Engineer - Full Stack (Mobile \& Backend) \\ \vspace{1pt}
+    \small \raisebox{-0.1\height}\faPhone\ 7355068106~ \href{mailto:jayamverma@gmail.com}{\raisebox{-0.2\height}\faEnvelope\  \underline{jayamverma@gmail.com}} ~ 
+    \href{https://www.linkedin.com/in/jayam-verma-855562160/}{\raisebox{-0.2\height}\faLinkedin\ \underline{Linkedin}}  ~
+    \href{https://github.com/Jayamvr007}{\raisebox{-0.2\height}\faGithub\ \underline{Github}} ~
+    \href{https://jayam-verma-ios-fintech.lovable.app/}{\raisebox{-0.2\height}\faGlobe\ \underline{Portfolio}}
+    \vspace{-8pt}
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {National Institute of Technology Hamirpur }{Jul. 2017 -- May 2021}
+      {B.Tech: Electronics And Communication Engineering}{Hamirpur, H.P.}
+  \resumeSubHeadingListEnd
+
+%-----------SUMMARY-----------
+\section{Summary}
+\resumeSubHeadingListStart
+\item{
+Software Development Engineer with \textbf{4.4 years} of experience building \textbf{scalable} mobile and backend systems for \textbf{finance} and \textbf{media} domains. Specialized in \textbf{iOS} (Swift, SwiftUI), \textbf{Backend} (Python, FastAPI), and \textbf{Real-time Systems}. Proven expertise in \textbf{distributed architecture}, \textbf{video streaming}, and \textbf{WebSocket communication}. Passionate about leading end-to-end development, from designing resilient APIs to crafting polished, high-performance user interfaces used by \textbf{millions of users}.
+}
+\resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+\resumeSubheading
+{FIBE (formerly Earlysalary) $|$ \emph{Swift, SwiftUI, Python, FastAPI} {\small (\href{https://apps.apple.com/in/app/fibe-instant-personal-loan-app/id1094602630}{App Store})}}{Jul 2024 -- present}
+      {Senior iOS Engineer }{Pune, Maharashtra}
+     \resumeItemListStart
+     \resumeItem{Built the UI layer for FiBE's \textbf{UPI Payment System}, handling Registration, UPI Lite, and Mandate flows, ensuring a seamless user experience.}
+     \resumeItem{Contributed to backend microservices using \textbf{Python} and \textbf{FastAPI}, optimizing API response payloads for mobile clients and improving success rates by \textbf{15\%} for the UPI module.}
+     \resumeItem{Transformed the static \textbf{KYC journey} into a \textbf{server-driven dynamic flow}, allowing configurable steps (Selfie, Video KYC, etc.) without app updates.}
+     \resumeItem{Revamped the \textbf{Disbursement} module using \textbf{MVVM}, enabling dynamic loan terms and promo codes, which boosted disbursals by \textbf{20\%} for 80K+ users.}
+        \resumeItem{Designed a \textbf{Referral System} that drove \textbf{25\%} user acquisition growth, rewarding users with Fibecoins and vouchers.}
+        \resumeItem{Developed key engagement features like \textbf{Scratch Cards} and \textbf{Fixed Deposits} (via UpSwing SDK), driving 10,000+ new investment accounts.}
+        \resumeItem{Led \textbf{code reviews} and defined iOS coding standards to improve team velocity and code quality.}
+      \resumeItemListEnd
+\resumeSubheading
+{Rakupa Technologies (sub. Whiz Technologies) $|$ \emph{Swift, AVFoundation, Xcode}{\small (\href{https://apps.apple.com/in/app/wtva-9-news/id1188060806}{App Store})}}{June 2023 -- July 2024}
+      {iOS Developer}{Pune, Maharashtra}
+     \resumeItemListStart
+        \resumeItem{Contributed to over \textbf{125+ media apps} (Griffin News, Beasley, etc.) focusing on \textbf{video streaming} and HLS playback.}
+        \resumeItem{Optimized \textbf{video discovery} and playback performance using \textbf{AVFoundation}, ensuring smooth streaming across varying network conditions.}
+        \resumeItem{Integrated \textbf{Weather SDKs} and implemented detailed event tracking (mParticle) for user analytics.}
+        \resumeItem{Deployed \textbf{20+ apps} with targeted push notifications, increasing daily active users by keeping audiences engaged with real-time news alerts.}
+      \resumeItemListEnd
+\resumeSubheading
+{LTIMindtree $|$ \emph{Swift, Xcode} {\small (\href{https://apps.apple.com/gb/app/m-s-banking/id965170355}{App Store})}}
+{Jul 2021 -- Apr 2023}
+      {Software Engineer}{Pune, Maharashtra}
+      \resumeItemListStart
+        \resumeItem{Implemented \textbf{Apple Pay In-App Provisioning} for \textbf{HSBC Mobile Banking}, streamlining card additions for 100K+ customers.}
+        \resumeItem{\textbf{Researched and integrated 15+ REST APIs} to enhance transaction efficiency by \textbf{30\%} through mobile payment platforms.}
+        \resumeItem{Collaborated across distributed teams using Git/Jira to optimize workflows and reduce issue resolution times.}
+      \resumeItemListEnd
+    
+  \resumeSubHeadingListEnd
+\vspace{-8pt}
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \vspace{-6pt}
+    \resumeSubHeadingListStart
+    
+    \resumeProjectHeading
+    {\textbf{Sentinel - Real-time Stock Intelligence} {\small (\href{https://github.com/Jayamvr007/sentinal}{GitHub})}}
+    {January 2026}
+    \resumeSubSubheading
+    {Full Stack Real-time Finance App $|$ \emph{SwiftUI, Python (FastAPI), WebSockets, Next.js}}{}
+    \resumeItemListStart
+      \resumeItem{Built a real-time stock tracker using \textbf{FastAPI} and \textbf{WebSockets}, handling \textbf{1,000+ updates/sec} with sub-50ms latency.}
+      \resumeItem{Developed an iOS app with \textbf{Live Activities} and \textbf{Dynamic Island}, displaying live prices on the Lock Screen with zero battery drain.}
+      \resumeItem{Created a custom alerting engine using \textbf{APNs} and \textbf{SQLAlchemy} to deliver instant notifications for price thresholds.}
+      \resumeItem{Designed a synchronized \textbf{Next.js} web dashboard that shares real-time WebSocket streams with the mobile app.}
+    \resumeItemListEnd
+    \vspace{-13pt}
+
+    \resumeProjectHeading
+{\textbf{SETTLE} {\small (\href{https://github.com/Jayamvr007/settle}{GitHub})}}
+{December 2025}
+\resumeSubSubheading
+{Group Expense Splitting \& Debt Management iOS App $|$ \emph{SwiftUI, Firebase, MVVM, Core Data}}{}
+\resumeItemListStart
+  \resumeItem{Engineered a \textbf{debt simplification algorithm} that reduces settlement transactions by \textbf{70\%}.}
+  \resumeItem{Implemented \textbf{dual authentication} (Google + Phone OTP) and UPI payment integration with sub-100ms response times.}
+  \resumeItem{Designed \textbf{15+ reusable SwiftUI components} for complex splitting modes and real-time balance updates.}
+ \resumeItem{Implemented on-device \textbf{CoreML} suggestions for expense categories with >85\% accuracy.}
+\resumeItemListEnd
+\vspace{-13pt}
+      
+      \resumeProjectHeading
+{\textbf{Clima} {\small (\href{https://github.com/Jayamvr007/Clima_App}{GitHub})} $|$ \emph{Swift, Xcode}}{January 2021}
+          \resumeItemListStart
+            \resumeItem{Weather app fetching real-time data for 100+ cities using REST APIs and Core Location.}
+            \resumeItem{Used Delegate pattern to reduce code redundancy by 20\% and optimized GPS retrieval accuracy.}
+          \resumeItemListEnd
+          
+    \resumeSubHeadingListEnd
+\vspace{-13pt}
+
+
+%
+%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Swift, Python, SQL, TypeScript, React JS, Dart, Objective C, C++, JavaScript, HTML, CSS, Kotlin, DSA} \\
+     \textbf{Backend \& Web}{: FastAPI, Next.js, Node.js, SQLAlchemy, Pydantic, WebSockets, RESTful APIs, GraphQL, SQLite, PostgreSQL, Docker} \\
+     \textbf{iOS \& Mobile}{: SwiftUI, UIKit, Flutter, AVFoundation, AVPlayer, CoreData, Combine, Swift Concurrency, Live Activities, Dynamic Island, APNs, HLS Streaming, Auto Layout, Core Animation, In-App Purchases} \\
+     \textbf{Developer Tools}{: Xcode, Android Studio, VS Code, Git, Jenkins, Fastlane, Bazel, Firebase, Postman, Jira/Confluence, TestFlight} \\
+     \textbf{Architecture}{: MVVM, VIPER, Clean Architecture, Distributed Systems, Microservices, Design Patterns} \\
+     \textbf{Performance}{: Low-latency Networking, Memory Management, AsyncIO, App Optimization} \\
+     \textbf{AI \& LLM Tools}{: LLM, RAG, LangChain, Github Copilot, Claude Sonnet, ChatGPT-4} \\
+    }}
+ \end{itemize}
+ \vspace{-10pt}
+
+ %-----------LANGUAGES-----------
+\section{Languages}
+\vspace{0pt}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \item \small English (Fluent), Hindi (Native)
+\end{itemize}
+\vspace{-10pt}
+        
+\end{document}

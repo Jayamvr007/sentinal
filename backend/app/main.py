@@ -177,6 +177,40 @@ async def create_alert(alert_data: AlertCreate):
         condition=alert_data.condition,
         target_price=alert_data.target_price
     )
+    
+    # Immediately check if this alert should trigger against current prices
+    current_price_data = market_data_service.get_current_price(alert.symbol)
+    if current_price_data:
+        current_price = current_price_data.price
+        # Check condition manually for immediate evaluation
+        should_trigger = False
+        if alert.condition.value == "above" and current_price >= alert.target_price:
+            should_trigger = True
+        elif alert.condition.value == "below" and current_price <= alert.target_price:
+            should_trigger = True
+        
+        if should_trigger:
+            # Trigger the alert
+            triggered_alert = await alert_service.trigger_alert(alert.id)
+            if triggered_alert:
+                alert = triggered_alert
+                print(f"[Alert] TRIGGERED immediately: {alert.symbol} {alert.condition.value} ${alert.target_price}")
+                
+                # Broadcast to WebSocket clients
+                await connection_manager.broadcast(WebSocketMessage(
+                    type="alert_triggered",
+                    data=alert.to_dict(),
+                    timestamp=datetime.utcnow()
+                ).model_dump(mode="json"))
+                
+                # Send push notification
+                await push_service.send_alert_notification(
+                    symbol=alert.symbol,
+                    condition=alert.condition.value,
+                    target_price=alert.target_price,
+                    current_price=current_price
+                )
+    
     return AlertResponse(
         id=alert.id,
         symbol=alert.symbol,
@@ -332,6 +366,101 @@ async def emergency_stop():
     )
 
 
+# ============================================================================
+# AI Prediction Endpoints
+# ============================================================================
+
+from .models import PredictionResponse, TrainingResponse, BatchTrainingResponse, SymbolListResponse
+from .services.prediction_service import prediction_service
+
+
+@app.get("/api/v1/prediction/symbols/all", response_model=SymbolListResponse)
+async def get_nifty50_symbols():
+    """Get all NIFTY 50 symbols available for prediction"""
+    symbols = prediction_service.get_available_symbols()
+    return SymbolListResponse(total=len(symbols), symbols=symbols)
+
+
+@app.get("/api/v1/prediction/symbols/top", response_model=SymbolListResponse)
+async def get_top_symbols():
+    """Get top 10 most traded symbols"""
+    symbols = prediction_service.get_top_symbols()
+    return SymbolListResponse(total=len(symbols), symbols=symbols)
+
+
+@app.get("/api/v1/prediction/{symbol}")
+async def get_prediction(symbol: str, days: int = 7):
+    """
+    Get AI price prediction for a stock symbol.
+    
+    Args:
+        symbol: Stock symbol (e.g., RELIANCE.NS)
+        days: Number of days to predict (1-30)
+        
+    Returns:
+        Prediction with current price, predicted prices, historical data, and confidence scores.
+        
+    Note: First request may take 30-60 seconds if model needs training.
+    """
+    # Add .NS suffix if not present
+    if not symbol.endswith(".NS"):
+        symbol = f"{symbol.upper()}.NS"
+    
+    days = min(max(days, 1), 30)  # Clamp to 1-30
+    
+    result = prediction_service.predict(symbol, days)
+    
+    if "error" in result:
+        raise HTTPException(status_code=400, detail=result["error"])
+    
+    return result
+
+
+@app.post("/api/v1/prediction/{symbol}/train", response_model=TrainingResponse)
+async def train_model(symbol: str, epochs: int = 50):
+    """
+    Train or retrain LSTM model for a specific symbol.
+    
+    Args:
+        symbol: Stock symbol (e.g., RELIANCE.NS)
+        epochs: Training epochs (default 50)
+        
+    Returns:
+        Training results including loss, MAE, and model path.
+        
+    Note: This will replace any existing model for the symbol.
+    """
+    # Add .NS suffix if not present
+    if not symbol.endswith(".NS"):
+        symbol = f"{symbol.upper()}.NS"
+    
+    result = prediction_service.train_model(symbol, epochs=epochs)
+    return result
+
+
+@app.post("/api/v1/prediction/train/batch")
+async def batch_train_models(symbols: list[str] = None, epochs: int = 25):
+    """
+    Train models for multiple symbols (batch training).
+    
+    Args:
+        symbols: List of symbols (default: top 10)
+        epochs: Training epochs per symbol
+        
+    Returns:
+        Batch training results.
+        
+    Note: This is a long-running operation (5-10 min for 10 symbols).
+    """
+    if symbols:
+        symbols = [s.upper() if not s.endswith(".NS") else s for s in symbols]
+        symbols = [s if s.endswith(".NS") else f"{s}.NS" for s in symbols]
+    
+    result = prediction_service.batch_train(symbols, epochs=epochs)
+    return result
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+

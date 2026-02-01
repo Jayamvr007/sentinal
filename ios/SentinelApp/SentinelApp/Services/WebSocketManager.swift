@@ -145,6 +145,21 @@ final class WebSocketManager {
                 if let newPrices = message.data.prices {
                     for price in newPrices {
                         self.prices[price.symbol] = price
+                        
+                        // MARK: - Live Activity (Disabled)
+                        // Uncomment when Widget Extension is set up
+                        /*
+                        if let activity = LiveActivityManager.shared.activity,
+                           activity.attributes.symbol == price.symbol {
+                            Task {
+                                await LiveActivityManager.shared.update(
+                                    price: price.price,
+                                    change: price.change,
+                                    changePercent: price.changePercent
+                                )
+                            }
+                        }
+                        */
                     }
                     self.lastUpdate = Date()
                 }

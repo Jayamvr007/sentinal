@@ -5,7 +5,7 @@ struct AlertsView: View {
     @StateObject private var alertService = AlertService.shared
     
     // Form state
-    @State private var selectedSymbol = "AAPL"
+    @State private var selectedSymbol = "RELIANCE"
     @State private var selectedCondition = "below"
     @State private var targetPriceText = ""
     @State private var isCreating = false
@@ -14,7 +14,7 @@ struct AlertsView: View {
     @State private var showTriggeredAlert = false
     @State private var triggeredAlertMessage = ""
     
-    private let symbols = ["AAPL", "GOOGL", "TSLA", "MSFT", "AMZN", "NVDA", "META", "JPM", "V", "SPY"]
+    private let symbols = ["RELIANCE", "TCS", "HDFCBANK", "INFY", "ICICIBANK", "HINDUNILVR", "ITC", "SBIN", "BHARTIARTL", "KOTAKBANK"]
     
     var body: some View {
         NavigationStack {
@@ -29,6 +29,9 @@ struct AlertsView: View {
                 .padding()
             }
             .background(Color.black)
+            .onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
             .navigationTitle("Alerts")
             .task {
                 await alertService.fetchAlerts()
@@ -46,7 +49,7 @@ struct AlertsView: View {
                    let symbol = data["symbol"] as? String,
                    let condition = data["condition"] as? String,
                    let targetPrice = data["target_price"] as? Double {
-                    triggeredAlertMessage = "\(symbol) went \(condition) $\(String(format: "%.2f", targetPrice))"
+                    triggeredAlertMessage = "\(symbol) went \(condition) ₹\(String(format: "%.2f", targetPrice))"
                     showTriggeredAlert = true
                 }
             }
@@ -221,7 +224,7 @@ struct AlertsView: View {
                     .font(.headline)
                     .foregroundStyle(.white)
                 
-                Text("\(alert.conditionText) $\(alert.targetPrice, specifier: "%.2f")")
+                Text("\(alert.conditionText) ₹\(alert.targetPrice, specifier: "%.2f")")
                     .font(.subheadline)
                     .foregroundStyle(.gray)
             }
@@ -277,6 +280,8 @@ struct AlertsView: View {
         
         if success {
             targetPriceText = ""
+            // Force refresh the alerts list from server
+            await alertService.fetchAlerts()
         }
     }
     

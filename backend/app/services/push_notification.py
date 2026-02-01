@@ -19,7 +19,7 @@ class PushNotificationService:
         self._initialized = False
         
         # APNs configuration
-        self.key_id = "48FN7949A7"
+        self.key_id = "85TC74KRDA"
         self.team_id = "V76XWK6797"
         self.bundle_id = "com.sentinelmarket.app"  # Update with your actual bundle ID
         self.key_path = Path(__file__).parent.parent.parent / "apns_key.p8"

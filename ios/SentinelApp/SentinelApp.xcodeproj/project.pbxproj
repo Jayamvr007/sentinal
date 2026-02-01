@@ -6,11 +6,58 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A95C94062F22B3F100288E93 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95C94052F22B3F100288E93 /* WidgetKit.framework */; };
+		A95C94082F22B3F100288E93 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A95C94072F22B3F100288E93 /* SwiftUI.framework */; };
+		A95C94192F22B3F300288E93 /* SentinelWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A95C94032F22B3F100288E93 /* SentinelWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A95C94172F22B3F300288E93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D74F45882D5F18DE00BABB6F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A95C94022F22B3F100288E93;
+			remoteInfo = SentinelWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A95C941E2F22B3F300288E93 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A95C94192F22B3F300288E93 /* SentinelWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		A95C94032F22B3F100288E93 /* SentinelWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SentinelWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A95C94052F22B3F100288E93 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		A95C94072F22B3F100288E93 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		D74F45902D5F18DE00BABB6F /* SentinelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SentinelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A95C941D2F22B3F300288E93 /* Exceptions for "SentinelWidget" folder in "SentinelWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A95C94022F22B3F100288E93 /* SentinelWidgetExtension */;
+		};
+		A95C94202F22B44000288E93 /* Exceptions for "SentinelApp" folder in "SentinelWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Models/PriceActivityAttributes.swift,
+			);
+			target = A95C94022F22B3F100288E93 /* SentinelWidgetExtension */;
+		};
 		D74F45A22D5F18DF00BABB6F /* Exceptions for "SentinelApp" folder in "SentinelApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -21,10 +68,19 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		A95C94092F22B3F100288E93 /* SentinelWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A95C941D2F22B3F300288E93 /* Exceptions for "SentinelWidget" folder in "SentinelWidgetExtension" target */,
+			);
+			path = SentinelWidget;
+			sourceTree = "<group>";
+		};
 		D74F45922D5F18DE00BABB6F /* SentinelApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				D74F45A22D5F18DF00BABB6F /* Exceptions for "SentinelApp" folder in "SentinelApp" target */,
+				A95C94202F22B44000288E93 /* Exceptions for "SentinelApp" folder in "SentinelWidgetExtension" target */,
 			);
 			path = SentinelApp;
 			sourceTree = "<group>";
@@ -32,6 +88,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A95C94002F22B3F100288E93 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A95C94082F22B3F100288E93 /* SwiftUI.framework in Frameworks */,
+				A95C94062F22B3F100288E93 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D74F458D2D5F18DE00BABB6F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -42,10 +107,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A95C94042F22B3F100288E93 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A95C94052F22B3F100288E93 /* WidgetKit.framework */,
+				A95C94072F22B3F100288E93 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D74F45872D5F18DE00BABB6F = {
 			isa = PBXGroup;
 			children = (
 				D74F45922D5F18DE00BABB6F /* SentinelApp */,
+				A95C94092F22B3F100288E93 /* SentinelWidget */,
+				A95C94042F22B3F100288E93 /* Frameworks */,
 				D74F45912D5F18DE00BABB6F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				D74F45902D5F18DE00BABB6F /* SentinelApp.app */,
+				A95C94032F22B3F100288E93 /* SentinelWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,6 +138,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A95C94022F22B3F100288E93 /* SentinelWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A95C941A2F22B3F300288E93 /* Build configuration list for PBXNativeTarget "SentinelWidgetExtension" */;
+			buildPhases = (
+				A95C93FF2F22B3F100288E93 /* Sources */,
+				A95C94002F22B3F100288E93 /* Frameworks */,
+				A95C94012F22B3F100288E93 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				A95C94092F22B3F100288E93 /* SentinelWidget */,
+			);
+			name = SentinelWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = SentinelWidgetExtension;
+			productReference = A95C94032F22B3F100288E93 /* SentinelWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D74F458F2D5F18DE00BABB6F /* SentinelApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D74F459E2D5F18DF00BABB6F /* Build configuration list for PBXNativeTarget "SentinelApp" */;
@@ -68,10 +167,12 @@
 				D74F458C2D5F18DE00BABB6F /* Sources */,
 				D74F458D2D5F18DE00BABB6F /* Frameworks */,
 				D74F458E2D5F18DE00BABB6F /* Resources */,
+				A95C941E2F22B3F300288E93 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A95C94182F22B3F300288E93 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				D74F45922D5F18DE00BABB6F /* SentinelApp */,
@@ -93,6 +194,9 @@
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
+					A95C94022F22B3F100288E93 = {
+						CreatedOnToolsVersion = 16.2;
+					};
 					D74F458F2D5F18DE00BABB6F = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -113,11 +217,19 @@
 			projectRoot = "";
 			targets = (
 				D74F458F2D5F18DE00BABB6F /* SentinelApp */,
+				A95C94022F22B3F100288E93 /* SentinelWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A95C94012F22B3F100288E93 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D74F458E2D5F18DE00BABB6F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -128,6 +240,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A95C93FF2F22B3F100288E93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D74F458C2D5F18DE00BABB6F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,7 +256,71 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		A95C94182F22B3F300288E93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A95C94022F22B3F100288E93 /* SentinelWidgetExtension */;
+			targetProxy = A95C94172F22B3F300288E93 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		A95C941B2F22B3F300288E93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V76XWK6797;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SentinelWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SentinelWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentinelmarket.app.SentinelWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A95C941C2F22B3F300288E93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V76XWK6797;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SentinelWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SentinelWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sentinelmarket.app.SentinelWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		D74F459C2D5F18DF00BABB6F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -328,6 +511,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A95C941A2F22B3F300288E93 /* Build configuration list for PBXNativeTarget "SentinelWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A95C941B2F22B3F300288E93 /* Debug */,
+				A95C941C2F22B3F300288E93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D74F458B2D5F18DE00BABB6F /* Build configuration list for PBXProject "SentinelApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

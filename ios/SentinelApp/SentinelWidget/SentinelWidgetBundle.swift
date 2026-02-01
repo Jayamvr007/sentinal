@@ -13,6 +13,6 @@ struct SentinelWidgetBundle: WidgetBundle {
     var body: some Widget {
         SentinelWidget()
         SentinelWidgetControl()
-        SentinelWidgetLiveActivity()
+        // SentinelWidgetLiveActivity()  // Disabled - Uncomment when Live Activity is fully configured
     }
 }

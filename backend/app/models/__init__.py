@@ -10,7 +10,13 @@ from .schemas import (
     MarketSummary,
     WebSocketMessage,
     EmergencyStopRequest,
-    EmergencyStopResponse
+    EmergencyStopResponse,
+    # AI Prediction
+    PredictionPoint,
+    PredictionResponse,
+    TrainingResponse,
+    BatchTrainingResponse,
+    SymbolListResponse
 )
 from .alert import Alert
 
@@ -26,5 +32,12 @@ __all__ = [
     "WebSocketMessage",
     "EmergencyStopRequest",
     "EmergencyStopResponse",
-    "Alert"
+    "Alert",
+    # AI Prediction
+    "PredictionPoint",
+    "PredictionResponse",
+    "TrainingResponse",
+    "BatchTrainingResponse",
+    "SymbolListResponse"
 ]
+

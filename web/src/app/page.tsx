@@ -8,9 +8,10 @@ import { PriceCard } from './components/PriceCard';
 import { AlertForm } from './components/AlertForm';
 import { AlertList } from './components/AlertList';
 import { ToastContainer, showToast } from './components/Toast';
+import { AIPrediction } from './components/AIPrediction';
 
-// Available symbols for alerts
-const SYMBOLS = ['AAPL', 'GOOGL', 'TSLA', 'MSFT', 'AMZN', 'NVDA', 'META', 'JPM', 'V', 'SPY'];
+// Available NIFTY 50 symbols for alerts
+const SYMBOLS = ['RELIANCE', 'TCS', 'HDFCBANK', 'INFY', 'ICICIBANK', 'HINDUNILVR', 'ITC', 'SBIN', 'BHARTIARTL', 'KOTAKBANK'];
 
 export default function Home() {
   // Handle alert triggers with toast notification
@@ -137,10 +138,13 @@ export default function Home() {
           />
         </div>
 
+        {/* AI Predictions Section */}
+        <AIPrediction />
+
         {/* Price Grid - All cards in continuous flow */}
         {priceArray.length > 0 && (
           <div>
-            <h3 className="text-xl font-bold text-white mb-4">📊 Live Prices</h3>
+            <h3 className="text-xl font-bold text-white py-4 mb-4">📊 Live Prices</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {priceArray.map((price) => (
                 <PriceCard key={price.symbol} price={price} />
@@ -154,7 +158,7 @@ export default function Home() {
       <footer className="border-t border-zinc-800 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm text-zinc-500">
-            Sentinel Market Watchdog • Real-time data powered by Finnhub
+            Sentinel Market Watchdog • Real-time data from NSE India via Yahoo Finance
           </p>
         </div>
       </footer>
@@ -162,19 +166,19 @@ export default function Home() {
   );
 }
 
-// Helper functions
+// Helper functions for NIFTY 50 Indian stocks
 function getSector(symbol: string): string {
   const sectors: Record<string, string> = {
-    AAPL: 'Technology',
-    GOOGL: 'Technology',
-    TSLA: 'Automotive',
-    MSFT: 'Technology',
-    AMZN: 'Consumer',
-    NVDA: 'Technology',
-    META: 'Technology',
-    SLV: 'Commodities',
-    GLD: 'Commodities',
-    SPY: 'Index',
+    RELIANCE: 'Energy',
+    TCS: 'Technology',
+    HDFCBANK: 'Finance',
+    INFY: 'Technology',
+    ICICIBANK: 'Finance',
+    HINDUNILVR: 'Consumer',
+    ITC: 'Consumer',
+    SBIN: 'Finance',
+    BHARTIARTL: 'Telecom',
+    KOTAKBANK: 'Finance',
   };
   return sectors[symbol] || 'Other';
 }
@@ -182,10 +186,10 @@ function getSector(symbol: string): string {
 function getSectorIcon(sector: string): string {
   const icons: Record<string, string> = {
     Technology: '💻',
-    Automotive: '🚗',
+    Finance: '🏦',
     Consumer: '🛒',
-    Commodities: '🪙',
-    Index: '📊',
+    Energy: '⚡',
+    Telecom: '📱',
     Other: '📈',
   };
   return icons[sector] || '📈';

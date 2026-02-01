@@ -1,0 +1,258 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,9pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=DarkBlue, filecolor=magenta, urlcolor=NavyBlue}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+\newcommand{\linkicon}[1]{%
+  \href{#1}{\raisebox{-0.15\height}{\faLink}}%
+}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge \scshape Jayam Verma} \\ \vspace{1pt}
+    Software Development Engineer - iOS \\ \vspace{1pt}
+    \small \raisebox{-0.1\height}\faPhone\ 7355068106~ \href{mailto:x@gmail.com}{\raisebox{-0.2\height}\faEnvelope\  \underline{jayamverma@gmail.com}} ~ 
+    \href{https://www.linkedin.com/in/jayam-verma-855562160/}{\raisebox{-0.2\height}\faLinkedin\ \underline{Linkedin
+}}  ~
+    \href{https://github.com/Jayamvr007}{\raisebox{-0.2\height}\faGithub\ \underline{Github
+}}
+\href{https://jayam-verma-ios-fintech.lovable.app/}{\raisebox{-0.2\height}\faGlobe\ \underline{Portfolio}}
+    \vspace{-8pt}
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {National Institute of Technology Hamirpur }{Jul. 2017 -- May 2021}
+      {B.Tech: Electronics And Communication Engineering}{Hamirpur, H.P.}
+  \resumeSubHeadingListEnd
+
+%-----------SUMMARY-----------
+\section{Summary}
+\resumeSubHeadingListStart
+\item{
+Software Development Engineer with \textbf{4.4 years} of experience building \textbf{scalable} \textbf{finance} and \textbf{media} apps using \textbf{Swift}, \textbf{SwiftUI}, and \textbf{MVVM}. Expertise in \textbf{video playback}, \textbf{distributed systems}, and \textbf{performance optimization}. Passionate about delivering clean, maintainable code. Proven ability to \textbf{lead end-to-end development}, \textbf{mentor engineering teams}, integrate complex SDKs, and ship high-impact features used by \textbf{millions of users}.
+}
+\resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+\resumeSubheading
+{FIBE (formerly Earlysalary) $|$ \emph{Swift, SwiftUI, Xcode} {\small (\href{https://apps.apple.com/in/app/fibe-instant-personal-loan-app/id1094602630}{App Store})}}{Jul 2024 -- present}
+      {Senior iOS Engineer }{Pune, Maharashtra}
+     \resumeItemListStart
+     \resumeItem{Worked on the UI layer of FiBE's in-house \textbf{UPI Payment System}, contributing to key modules including \textbf{Registration Flow}, \textbf{UPI Lite}, \textbf{Mandate}, \textbf{Financial}, and \textbf{Non-Financial} transactions. Focused on building \textbf{scalable}, responsive interfaces and collaborated with backend teams for smooth integration.}
+     \resumeItem{Transformed the rigid step-by-step \textbf{KYC} journey (\textbf{Selfie → POA → Video KYC → POI → Address → Bank Details → Reverse Penny Drop}) into a \textbf{dynamic, backend-driven flow}, enabling configurable KYC steps from server side. Enhanced onboarding flexibility, reduced failure rates, and improved customer experience across varied user profiles.}
+     \resumeItem{Revamped \textbf{Disbursement} flow using \textbf{MVVM} and \textbf{design patterns}, enabling editable \textbf{loan amounts}, \textbf{promo code }logic, and EMI options —
+        boosting loan disbursal by \textbf{20\%} across \textbf{80K+} users.}
+        \resumeItem{Designed and implemented a \textbf{Referral System} that increased user acquisition by \textbf{25\%}, rewarding over \textbf{50,000+} users with \textbf{Fibecoins}, \textbf{cashback}, and \textbf{vouchers}.}
+        \resumeItem{Developed a \textbf{Scratch Card} feature using \textbf{MVVM} architecture, enabling \textbf{30,000+} users to claim \textbf{cashback rewards} upon loan repayment.}\resumeItem{Implemented a \textbf{Limit Enhancement} feature, displaying approved \textbf{cash} and \textbf{checkout} limits on the acknowledgment screen.}
+        \resumeItem{Integrated an \textbf{Instant Cash Tenure} page, providing flexible repayment tenure options for customers.}
+        \resumeItem{Incorporated \textbf{Fixed Deposit (FD)} functionality by integrating the \textbf{UpSwing SDK}, facilitating the opening of over \textbf{10,000+ FD accounts} through the app.}
+        \resumeItem{Led \textbf{code reviews} and provided \textbf{technical guidance} on iOS best practices, establishing \textbf{coding standards} for the team.}
+      \resumeItemListEnd
+\resumeSubheading
+{Rakupa Technologies (sub. Whiz Technologies) $|$ \emph{Swift, AVFoundation, Xcode}{\small (\href{https://apps.apple.com/in/app/wtva-9-news/id1188060806}{App Store})}}{June 2023 -- July 2024}
+      {iOS Developer}{Pune, Maharashtra}
+     \resumeItemListStart
+        \resumeItem{Contributed to the development of over \textbf{125+ media news apps} with \textbf{video streaming} and \textbf{video playback} features for prominent clients including \textbf{Griffin News}, \textbf{Beasley}, \textbf{SaltWire}, and \textbf{GMG}.}
+        \resumeItem{Implemented \textbf{video discovery} and viewing experiences using \textbf{AVFoundation} and \textbf{AVPlayer}, optimizing \textbf{performance} for varying network conditions.}
+        \resumeItem{Integrated \textbf{Weather SDK} with location search and implemented event tracking for \textbf{mParticle} and \textbf{metrics reporting}.}
+        \resumeItem{Engineered and deployed \textbf{20+ interactive mobile applications} with targeted builds, integrating \textbf{push notifications} that increased user engagement by enabling real-time content updates and personalized alerts for over \textbf{25,000 active users}.}
+      \resumeItemListEnd
+\resumeSubheading
+{LTIMindtree $|$ \emph{Swift, Xcode} {\small (\href{https://apps.apple.com/gb/app/m-s-banking/id965170355}{App Store})}}
+{Jul 2021 -- Apr 2023}
+      {Software Engineer}{Pune, Maharashtra}
+      \resumeItemListStart
+        \resumeItem{Implemented \textbf{Apple Pay In-App Provisioning} for \textbf{HSBC Mobile Banking}, enabling seamless card addition for over \textbf{100,000+ debit/credit customers.}}
+        \resumeItem{\textbf{Researched and integrated 15+ REST APIs} and mobile payment platforms, enhancing transaction efficiency by \textbf{30\%} using Apple Pay.}
+        \resumeItem{Collaborated across \textbf{5+ distributed development} teams, optimizing workflows through tools like \textbf{Git} and\textbf{ JIRA}, reducing issue resolution time by \textbf{20\%}.}
+        \resumeItem{Participated in \textbf{code reviews} and contributed to \textbf{reliability and scaling} of the banking application.}
+      \resumeItemListEnd
+    
+  \resumeSubHeadingListEnd
+\vspace{-8pt}
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \vspace{-6pt}
+    \resumeSubHeadingListStart
+    \resumeProjectHeading
+{\textbf{SETTLE} {\small (\href{https://github.com/Jayamvr007/settle}{GitHub})}}
+{December 2025}
+\resumeSubSubheading
+{Group Expense Splitting \& Debt Management iOS App $|$ \emph{SwiftUI, Firebase, MVVM, Core Data}}{}
+\resumeItemListStart
+  \resumeItem{Engineered an \textbf{intelligent debt simplification algorithm} reducing settlement transactions by \textbf{70\%}, using \textbf{MVVM architecture}, \textbf{design patterns}, \textbf{Core Data} persistence, and \textbf{Firebase cloud sync} with \textbf{100\% offline support}.}
+  \resumeItem{Implemented \textbf{dual authentication} (\textbf{Google OAuth + Firebase Phone OTP}) and \textbf{UPI payment integration} with secure token handling, transaction tracking, and sub-\textbf{100ms response time}.}
+  \resumeItem{Designed \textbf{15+ reusable SwiftUI components} supporting \textbf{three-mode expense splitting} (equal, percentage, custom), \textbf{real-time balance calculations}, \textbf{contact picker integration} (\textbf{80\% data entry reduction}), and settlement optimization.}
+ \resumeItem{Implemented \textbf{on-device CoreML auto-suggestions} for expense categories, achieving \textbf{85\%+ prediction accuracy} while preserving user privacy.}
+\resumeItemListEnd
+\vspace{-13pt}
+      
+      \resumeProjectHeading
+{\textbf{Clima} {\small (\href{https://github.com/Jayamvr007/Clima_App}{GitHub})} $|$ \emph{Swift, Xcode}}{January 2021}
+          \resumeItemListStart
+            \resumeItem{\textbf{Weather app} to fetch real-time \textbf{weather data} for users in over \textbf{100+ cities},
+using phone \textbf{GPS} or manual city search.}
+            \resumeItem{Worked on Swift \textbf{Protocols} and \textbf{Delegate Design Pattern} reducing code redundancy by \textbf{20\%}.}
+            \resumeItem{\textbf{Integrated REST APIs} to fetch weather data, processing over \textbf{10,000+ API requests monthly}, and parsed data from \textbf{JSON} format to Swift objects}
+            \resumeItem{\textbf{Utilized Core Location} to accurately retrieve GPS data, improving location-based data accuracy by \textbf{15\%}.}
+          \resumeItemListEnd
+          \vspace{-13pt}
+      \resumeProjectHeading       
+{\textbf{Match Mania} {\small (\href{https://github.com/Jayamvr007/Match_App}{GitHub})} $|$ \emph{Swift, Xcode}}{October 2020}
+          \resumeItemListStart
+            \resumeItem{Developed a \textbf{card-matching} game where players flip cards to find pairs within a \textbf{time limit} of 60 second, winning upon successful matches.}
+            \resumeItem{Implemented the \textbf{MVC design pattern}, improving code maintainability and reducing bugs by \textbf{30\%} during development.}
+          \resumeItem{Created smooth \textbf{card-flipping animations}, integrated \textbf{sound effects}, and added a \textbf{timer} feature. Developed a responsive grid layout with custom classes for game logic and error handling.}
+          \resumeItemListEnd 
+    \resumeSubHeadingListEnd
+\vspace{-13pt}
+
+
+%
+%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Swift, Swift Concurrency, Objective C, C++, React JS, Dart, JavaScript, Python, MySQL, HTML, CSS, DSA, Kotlin} \\
+     \textbf{Video/Media}{: AVFoundation, AVPlayer, AVKit, Video Playback, HLS Streaming, Adaptive Bitrate} \\
+     \textbf{Developer Tools}{: Xcode, iOS SDK, Jira/Confluence, Testflight, Firebase Crashlytics, Jenkins, Fastlane, Bazel} \\
+     \textbf{Technologies/Frameworks}{: UIKit, SwiftUI, Flutter, GitHub, CoreData, Combine, Box Model, CocoaPods, CocoaTouch, Auto Layout, Core Animation, Networking (RESTful APIs, JSON), Alamofire, Firebase, Unit/UI Testing, Swift Testing, WebSockets, Push Notifications, In-App Purchases, Dependency Managers (CocoaPods/SPM), GraphQL} \\
+\textbf{Architecture}{: VIPER, MVC, MVVM, MVI, Design Patterns, Distributed Systems, Reliability and Scaling} \\
+\textbf{Performance}{: App Performance Optimization, Memory Management, Metrics Reporting} \\
+\textbf{AI Tools}{: Github Copilot, Claude Sonnet/Claude Code, ChatGPT-4} \\
+    }}
+ \end{itemize}
+ \vspace{-10pt}
+
+ %-----------LANGUAGES-----------
+\section{Languages}
+\vspace{0pt}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \item \small English (Fluent), Hindi (Native)
+\end{itemize}
+\vspace{-10pt}
+        
+\end{document}

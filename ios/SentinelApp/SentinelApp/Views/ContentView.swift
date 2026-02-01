@@ -14,6 +14,11 @@ struct ContentView: View {
                     Label("Alerts", systemImage: "bell.badge")
                 }
             
+            PredictionView()
+                .tabItem {
+                    Label("AI Insights", systemImage: "brain.head.profile")
+                }
+            
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gearshape")

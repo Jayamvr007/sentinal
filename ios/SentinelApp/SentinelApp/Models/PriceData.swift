@@ -17,9 +17,9 @@ struct PriceData: Codable, Identifiable, Equatable {
         changePercent >= 0
     }
     
-    /// Formatted price string
+    /// Formatted price string (Indian Rupees)
     var formattedPrice: String {
-        String(format: "$%.2f", price)
+        String(format: "₹%.2f", price)
     }
     
     /// Formatted change with sign
@@ -84,40 +84,40 @@ struct WebSocketMessage: Codable {
     }
 }
 
-/// Symbol metadata for display
+/// Symbol metadata for NIFTY 50 Indian stocks
 enum SymbolMetadata {
     static let companyNames: [String: String] = [
-        "AAPL": "Apple Inc.",
-        "GOOGL": "Alphabet Inc.",
-        "TSLA": "Tesla Inc.",
-        "MSFT": "Microsoft Corp.",
-        "AMZN": "Amazon.com Inc.",
-        "NVDA": "NVIDIA Corp.",
-        "META": "Meta Platforms",
-        "SLV": "iShares Silver Trust",
-        "GLD": "SPDR Gold Shares",
-        "SPY": "S&P 500 ETF"
+        "RELIANCE": "Reliance Industries",
+        "TCS": "Tata Consultancy Services",
+        "HDFCBANK": "HDFC Bank Ltd.",
+        "INFY": "Infosys Ltd.",
+        "ICICIBANK": "ICICI Bank Ltd.",
+        "HINDUNILVR": "Hindustan Unilever",
+        "ITC": "ITC Ltd.",
+        "SBIN": "State Bank of India",
+        "BHARTIARTL": "Bharti Airtel Ltd.",
+        "KOTAKBANK": "Kotak Mahindra Bank"
     ]
     
     static let sectors: [String: String] = [
-        "AAPL": "Technology",
-        "GOOGL": "Technology",
-        "TSLA": "Automotive",
-        "MSFT": "Technology",
-        "AMZN": "Consumer",
-        "NVDA": "Technology",
-        "META": "Technology",
-        "SLV": "Commodities",
-        "GLD": "Commodities",
-        "SPY": "Index"
+        "RELIANCE": "Energy",
+        "TCS": "Technology",
+        "HDFCBANK": "Finance",
+        "INFY": "Technology",
+        "ICICIBANK": "Finance",
+        "HINDUNILVR": "Consumer",
+        "ITC": "Consumer",
+        "SBIN": "Finance",
+        "BHARTIARTL": "Telecom",
+        "KOTAKBANK": "Finance"
     ]
     
     static let sectorIcons: [String: String] = [
         "Technology": "💻",
-        "Automotive": "🚗",
+        "Finance": "🏦",
         "Consumer": "🛒",
-        "Commodities": "🪙",
-        "Index": "📊"
+        "Energy": "⚡",
+        "Telecom": "📱"
     ]
     
     static func companyName(for symbol: String) -> String {

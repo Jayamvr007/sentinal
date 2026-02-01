@@ -44,4 +44,5 @@ coverage/
 
 # Misc
 *.pem
+*.p8
 Thumbs.db
